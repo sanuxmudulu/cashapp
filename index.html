@@ -366,20 +366,22 @@
   </div>
 
   <script>
-    var baseUrl = "https://glstrk.com/?offer_ids=MzcwOSwyNTk2&affiliate_id=MTUwNDA2";
+    var params = new URLSearchParams(window.location.search);
+var ad = params.get('ad') || 'direct';
+var baseUrl = "https://glstrk.com/?offer_ids=MzcwOSwyNTk2&affiliate_id=MTUwNDA2&source=" + ad;
 
-    function handleClaimClick() {
-      document.getElementById('popup').classList.add('show');
-    }
+function handleClaimClick() {
+  document.getElementById('popup').classList.add('show');
+}
 
-    function handlePopupClaim() {
-      window.location.href = baseUrl;
-    }
+function handlePopupClaim() {
+  window.location.href = baseUrl;
+}
 
-    // Close popup on overlay click
-    document.getElementById('popup').addEventListener('click', function(e) {
-      if (e.target === this) this.classList.remove('show');
-    });
+// Close popup on overlay click
+document.getElementById('popup').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('show');
+});
 
     // FAQ toggle
     function toggleFaq(el) {
