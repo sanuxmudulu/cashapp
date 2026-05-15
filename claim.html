@@ -279,7 +279,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   <div class="popup-overlay" id="popup">
     <div class="popup-card">
       <p>Set your age to at least 18 years to be eligible.</p>
-      <button class="popup-btn" onclick="ttq.track('CompleteRegistration'); handlePopupClaim();">Claim Now</button>
+      <button class="popup-btn" onclick="trackAndRedirect()">Claim Now</button>Claim Now</button>
     </div>
   </div>
 
@@ -376,6 +376,14 @@ function handleClaimClick() {
 
 function handlePopupClaim() {
   window.location.href = baseUrl;
+}
+
+    function trackAndRedirect() {
+  ttq.track('CompleteRegistration');
+
+  setTimeout(function() {
+    window.location.href = baseUrl;
+  }, 300);
 }
 
 // Close popup on overlay click
