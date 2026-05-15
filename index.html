@@ -60,9 +60,18 @@
     <h1>Quick Question for<br>iPhone Users</h1>
     <p class="subtext">iPhone users in your area are being selected for an exclusive Apple Pay program</p>
     <p class="question">How often do you use Apple Pay?</p>
+
     <a href="claim.html" class="option">Every day</a>
     <a href="claim.html" class="option">A few times a week</a>
     <a href="claim.html" class="option">Rarely / Never</a>
   </div>
+
+  <script>
+    const currentQuery = window.location.search;
+
+    document.querySelectorAll('.option').forEach(btn => {
+      btn.href = 'claim.html' + currentQuery;
+    });
+  </script>
 </body>
 </html>
