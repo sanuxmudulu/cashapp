@@ -380,9 +380,7 @@ function handlePopupClaim() {
 
     function trackAndRedirect() {
   ttq.track('CompleteRegistration');
-  setTimeout(function() {
-    window.location.href = baseUrl;
-  }, 500);
+  console.log("CompleteRegistration fired");
 }
 
 // Close popup on overlay click
