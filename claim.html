@@ -279,7 +279,7 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   <div class="popup-overlay" id="popup">
     <div class="popup-card">
       <p>Set your age to at least 18 years to be eligible.</p>
-      <button class="popup-btn" onclick="handlePopupClaim(); ttq.track('ClickButton')">Claim Now</button>
+      <button class="popup-btn" onclick="ttq.track('CompleteRegistration'); handlePopupClaim();">Claim Now</button>
     </div>
   </div>
 
