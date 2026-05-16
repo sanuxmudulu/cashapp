@@ -456,8 +456,7 @@
 
     <div class="cat-grid">
       <div class="cat-card">
-        <!-- swap with: <img src="skincare.jpg" class="cat-img" alt="Skincare"> -->
-        <div class="cat-img-placeholder">Serums &amp; Moisturisers<div class="img-name">skincare.jpg</div></div>
+        <img src="images/skincare.jpg" class="cat-img" alt="Skincare">
         <div class="cat-info">
           <div class="cat-info-left"><h3>Skincare</h3><span>2,134 products · 11,209 reviews</span></div>
           <a href="#" class="cat-browse apply-btn-inline">Browse Reviews →</a>
@@ -465,8 +464,7 @@
       </div>
 
       <div class="cat-card">
-        <!-- swap with: <img src="makeup.jpg" class="cat-img" alt="Makeup"> -->
-        <div class="cat-img-placeholder">Eyeshadow &amp; Lipsticks<div class="img-name">makeup.jpg</div></div>
+        <img src="images/makeup.jpg" class="cat-img" alt="Makeup">
         <div class="cat-info">
           <div class="cat-info-left"><h3>Makeup</h3><span>1,876 products · 9,543 reviews</span></div>
           <a href="#" class="cat-browse apply-btn-inline">Browse Reviews →</a>
@@ -474,8 +472,7 @@
       </div>
 
       <div class="cat-card">
-        <!-- swap with: <img src="fragrance.jpg" class="cat-img" alt="Fragrance"> -->
-        <div class="cat-img-placeholder">Perfumes &amp; Fragrances<div class="img-name">fragrance.jpg</div></div>
+        <img src="images/fragrance.jpg" class="cat-img" alt="Fragrance">
         <div class="cat-info">
           <div class="cat-info-left"><h3>Fragrance</h3><span>987 products · 5,321 reviews</span></div>
           <a href="#" class="cat-browse apply-btn-inline">Browse Reviews →</a>
@@ -483,8 +480,7 @@
       </div>
 
       <div class="cat-card">
-        <!-- swap with: <img src="haircare.jpg" class="cat-img" alt="Haircare"> -->
-        <div class="cat-img-placeholder">Shampoo &amp; Hair Products<div class="img-name">haircare.jpg</div></div>
+        <img src="images/haircare.jpg" class="cat-img" alt="Haircare">
         <div class="cat-info">
           <div class="cat-info-left"><h3>Haircare</h3><span>1,234 products · 7,102 reviews</span></div>
           <a href="#" class="cat-browse apply-btn-inline">Browse Reviews →</a>
@@ -492,8 +488,7 @@
       </div>
 
       <div class="cat-card">
-        <!-- swap with: <img src="tools.jpg" class="cat-img" alt="Tools"> -->
-        <div class="cat-img-placeholder">Makeup Brushes &amp; Tools<div class="img-name">tools.jpg</div></div>
+        <img src="images/tools.jpg" class="cat-img" alt="Tools">
         <div class="cat-info">
           <div class="cat-info-left"><h3>Tools &amp; Brushes</h3><span>654 products · 3,876 reviews</span></div>
           <a href="#" class="cat-browse apply-btn-inline">Browse Reviews →</a>
@@ -501,8 +496,7 @@
       </div>
 
       <div class="cat-card">
-        <!-- swap with: <img src="body.jpg" class="cat-img" alt="Bath and Body"> -->
-        <div class="cat-img-placeholder">Body Lotion &amp; Scrubs<div class="img-name">body.jpg</div></div>
+        <img src="images/body.jpg" class="cat-img" alt="Bath and Body">
         <div class="cat-info">
           <div class="cat-info-left"><h3>Bath &amp; Body</h3><span>765 products · 4,231 reviews</span></div>
           <a href="#" class="cat-browse apply-btn-inline">Browse Reviews →</a>
@@ -579,12 +573,18 @@
     return ad ? BASE_URL + '&source=' + encodeURIComponent(ad) : BASE_URL;
   }
 
-  function applyLinks() {
-    const url = getOfferURL();
-    document.querySelectorAll('.apply-btn, .apply-btn-inline').forEach(el => { el.href = url; });
+  function handleClick(e) {
+    e.preventDefault();
+    window.location.href = getOfferURL();
   }
 
-  applyLinks();
+  // Attach to all CTA buttons on load
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.apply-btn, .apply-btn-inline').forEach(function(el) {
+      el.href = getOfferURL();
+      el.addEventListener('click', handleClick);
+    });
+  });
 
   function showPage(n) {
     document.getElementById('reviews-p1').style.display = n === 1 ? 'block' : 'none';
