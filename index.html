@@ -17,6 +17,90 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /* ===================== PRE-LANDER ===================== */
+  #pre-lander {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #fdf0f6 0%, #f5e8f8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+  }
+
+  .pre-wrap {
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .pre-brand-logo {
+    display: inline-block;
+    background: #1a1a1a;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 0.22em;
+    padding: 7px 18px;
+    border-radius: 3px;
+    margin-bottom: 32px;
+    text-transform: uppercase;
+  }
+
+  .pre-heading {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1a1a2e;
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+
+  .pre-sub {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .state-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .state-btn {
+    background: #fff;
+    border: 1.5px solid #f0dde8;
+    border-radius: 12px;
+    padding: 16px 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a2e;
+    cursor: pointer;
+    transition: all 0.18s;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 1px 6px rgba(180,80,130,0.07);
+  }
+
+  .state-btn:hover, .state-btn:active {
+    background: linear-gradient(135deg, #d4679a, #b34f82);
+    color: #fff;
+    border-color: transparent;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(180,80,130,0.22);
+  }
+
+  .pre-disclaimer {
+    font-size: 12px;
+    color: #ccc;
+    text-align: center;
+  }
+
+  /* ===================== MAIN LANDER ===================== */
+  #main-lander { display: none; }
+
   .page-wrap { max-width: 480px; margin: 0 auto; }
 
   @media (min-width: 768px) {
@@ -288,6 +372,29 @@
 </style>
 </head>
 <body>
+
+<!-- ===================== PRE-LANDER ===================== -->
+<div id="pre-lander">
+  <div class="pre-wrap">
+    <div class="pre-brand-logo">SEPHORA</div>
+    <h1 class="pre-heading">Sephora Reviewer Program</h1>
+    <p class="pre-sub">We're currently looking for product reviewers in select areas.<br>Select your state to check availability.</p>
+    <div class="state-grid">
+      <button class="state-btn" onclick="enterLander()">New South Wales</button>
+      <button class="state-btn" onclick="enterLander()">Victoria</button>
+      <button class="state-btn" onclick="enterLander()">Queensland</button>
+      <button class="state-btn" onclick="enterLander()">Western Australia</button>
+      <button class="state-btn" onclick="enterLander()">South Australia</button>
+      <button class="state-btn" onclick="enterLander()">Tasmania</button>
+      <button class="state-btn" onclick="enterLander()">ACT</button>
+      <button class="state-btn" onclick="enterLander()">Northern Territory</button>
+    </div>
+    <p class="pre-disclaimer">*Availability may vary by location.</p>
+  </div>
+</div>
+
+<!-- ===================== MAIN LANDER ===================== -->
+<div id="main-lander">
 
 <div class="toast" id="toast">
   <div class="toast-name" id="toast-name"></div>
@@ -563,6 +670,7 @@
   </div>
 
 </div>
+</div><!-- end #main-lander -->
 
 <script>
   const BASE_URL = 'https://giftclick.org/aff_c?offer_id=4329&aff_id=150406';
@@ -578,13 +686,17 @@
     window.location.href = getOfferURL();
   }
 
-  // Attach to all CTA buttons on load
-  document.addEventListener('DOMContentLoaded', function() {
+  function enterLander() {
+    document.getElementById('pre-lander').style.display = 'none';
+    document.getElementById('main-lander').style.display = 'block';
+    // Attach CTA buttons now that main lander is visible
     document.querySelectorAll('.apply-btn, .apply-btn-inline').forEach(function(el) {
       el.href = getOfferURL();
       el.addEventListener('click', handleClick);
     });
-  });
+    // Start toasts
+    setTimeout(function() { showToast(); setInterval(showToast, 9000); }, 3000);
+  }
 
   function showPage(n) {
     document.getElementById('reviews-p1').style.display = n === 1 ? 'block' : 'none';
@@ -615,10 +727,8 @@
     toastMsg.innerHTML = t.msg;
     toastEl.classList.add('show');
     toastIndex++;
-    setTimeout(() => { toastEl.classList.remove('show'); }, 4500);
+    setTimeout(function() { toastEl.classList.remove('show'); }, 4500);
   }
-
-  setTimeout(() => { showToast(); setInterval(showToast, 9000); }, 3000);
 </script>
 </body>
 </html>
